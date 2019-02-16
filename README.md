@@ -3,7 +3,7 @@
 为折800的业务抵御了多次意外问题，极大减少事故率。如果对Ngx_Lua开发有兴趣的朋友们，可以购买书籍 << Nginx实战：基于Lua语言的配置、开发与架构详解 >>https://item.jd.com/12487157.html
 
 介绍：
-   ngx_sdt_system是才用高性能Ngx_Lua模块开发，安装方便，对业务完全透明化，用户将可以支持容灾的url（支持精确匹配，正则匹配，还有目录匹配）配置到mysql，
+   ngx_sdt_system是采用高性能Ngx_Lua模块开发，可在nginx 和openresty 中方便部署，对业务完全透明化，使用者将可以支持容灾的url（支持精确匹配，正则匹配，还有目录匹配）配置到mysql，
    在配合监控系统（比如nginx_log_analysis的日志分析系统）对url实时监控，当url出现异常后，只需要修改mysql的的字段即可在短时间内将url请求切换到容灾系统。
  
    它拥有如下特性：
