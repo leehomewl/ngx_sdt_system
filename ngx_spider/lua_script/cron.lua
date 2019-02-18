@@ -15,7 +15,7 @@ if 0 == ngx.worker.id() then
     local init_lua_data = ngx.shared.init_lua_data;
     local hostname = init_lua_data:get("hostname")
     if hostname == init_config.hostname_crond then
-        local ok, err = ngx.timer.every(init_config.cache_version_updatetime, init_redis_data.lpush_redis)
+        local ok, err = ngx.timer.every(init_config.cache_version_updatetime*60, init_redis_data.lpush_redis)
         if not ok then
             ngx.log(ngx.ERR, "failed to create timer: ", err)
             return
