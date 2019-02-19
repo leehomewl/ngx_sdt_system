@@ -19,7 +19,7 @@
    
    5. 如果请求进入容灾系统没有获取到数据，请求支持切换到线上服务重新获取（前提是线上服务仍然可以提供一定的访问能力）。
 
-   如果你已经在使用nginx 的日志分析系统：nginx_log_analysis (https://github.com/leehomewl/nginx_log_analysis)，那么静态容灾系统会更方便的使用，如果你还没有使用nginx_log_analysis，需要你拥有其他监控工具可以监控 URL的可用性和响应时间，来确认触发容灾。
+   如果你已经在使用nginx 的日志分析系统：nginx_log_analysis ( https://github.com/leehomewl/nginx_log_analysis )，那么静态容灾系统会更方便的使用，如果你还没有使用nginx_log_analysis，需要你拥有其他监控工具可以监控 URL的可用性和响应时间，来确认触发容灾。
    
    如果你任何监控系统都没有，可以使用本系统的 偶发性错误降级功能，配置在mysql 的url可以在后端返回4xx 或者5xx 后，将请求切换到容灾系统的功能，提升用户体验（功能比较单一）。
  
