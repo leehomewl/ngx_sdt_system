@@ -2,6 +2,8 @@
 使用Nginx 来完成智能的静态容灾系统，帮助在异常时，可以提供静态化的服务做降级和容灾功能。目前已经在折800运行2年多，
 为折800的业务抵御了多次意外问题，极大减少事故率。如果对Ngx_Lua开发有兴趣的朋友们，可以购买书籍《Nginx实战：基于Lua语言的配置、开发与架构详解》https://item.jd.com/12487157.html
 
+关于静态容灾使用场景，详见 https://github.com/leehomewl/ngx_sdt_system/blob/master/README_pdf/%E9%9D%99%E6%80%81%E5%AE%B9%E7%81%BE%E8%AE%BE%E8%AE%A1.pptx ，请下载后使用office办公室软件打开
+
 
 ## 介绍：
    ngx_sdt_system是采用高性能Ngx_Lua模块开发，可在nginx 和openresty 中方便部署，对业务完全透明化，使用者将可以支持容灾的url（支持精确匹配，正则匹配，还有目录匹配）配置到mysql，
