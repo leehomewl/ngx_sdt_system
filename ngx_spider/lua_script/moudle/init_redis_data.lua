@@ -36,11 +36,9 @@ local insert_redis = function()
     --local cmd = string.format([[influx -database "%s"   -execute "select distinct(org_url)  from nginx where time > now()-%sm and status != '404' and status != '403'  and org_url != '' and varnish_ttl = 'null' and http_user_agent != '%s'" -format "json"  > %s -host='%s'  -port='%s' ]] ,config.influx_config['database'],config['cache_version_updatetime'],config['spider_user_agent'],tmp_file,config.influx_config['host'],config.influx_config['port'])
     local cmd = string.format([[influx -database "%s"   -execute "select distinct(org_url)  from nginx where time > now()-%sm and status != '404' and status != '403'  and org_url != '' and http_user_agent != '%s'" -format "json"  > %s -host='%s'  -port='%s' ]] ,config.influx_config['database'],config['cache_version_updatetime'],config['spider_user_agent'],tmp_file,config.influx_config['host'],config.influx_config['port'])
 
-    ngx.log(ngx.ERR,cmd)
     local f = assert(io.popen(cmd, 'r'))
     local f_res = f:read("*a")
     f:close()
-    ngx.log(ngx.ERR,tostring(f_res))
     local m = ngx.re.match(f_res,"\\w")
     if m  then
         ngx.log(ngx.ERR,"导出influxdb数据异常，原因可能是: " .. f_res)
@@ -161,7 +159,7 @@ function spider.rpop_redis()
                 elseif tostring(ok) == "userdata: NULL" then
                     sleep_threshold = sleep_threshold +1 
                     if sleep_threshold > 10 then
-                         ngx.log(ngx.ERR,'rpop res is : ', tostring(ok),'读取队列为空，休息一会在读取')
+                         ngx.log(ngx.ERR,'从redis读取数据为空，休息一会在读取')
                          ngx.sleep(5)
                          return 
                          --ngx.exit(ngx.HTTP_OK)
@@ -171,11 +169,9 @@ function spider.rpop_redis()
                     ngx.sleep(0.01)
                     spawn(spawn_op)
                     if init_again == 30 then
-                        --ngx.log(ngx.ERR,'init_again:' ,init_again)
                         ngx.sleep(0.3)
                         init_again = 0
                     end
-      --              ngx.log(ngx.ERR,i,'iiiiiiiiiiiiiiii','pid:' , ngx.worker.pid())
                 end
        end
 

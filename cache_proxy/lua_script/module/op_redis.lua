@@ -53,7 +53,6 @@ function  _M.pipeline_redis(cmds,redis_sharding)
         
         for i, res in ipairs(results) do
             if type(res) == "table" then
-                ngx_log(ngx_ERR,"command ", i, '----',table.concat(res,'--'))
                 if res[1] == false then
                     ngx_log(ngx_ERR,"failed to run command ", i, ": ", res[2])
                 end

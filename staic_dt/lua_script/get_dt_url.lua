@@ -129,7 +129,7 @@ local dt_status =  function(uri_type_list)
     elseif precise and regex and wildcard then
        return 7
     else 
-       ngx_log(ngx_ERR,'没有发现可以容灾的服务: ',table.concat(uri_type_list,","))
+       --ngx_log(ngx_ERR,'没有发现可以容灾的服务: ',table.concat(uri_type_list,","))
        return 0 
     end
 end 

@@ -14,7 +14,6 @@ local op_time_ver = function()
    local l,f = math.modf(min/cache_version_updatetime)
    local version  =  (60/cache_version_updatetime)*hour  + l
    lua_cache_data:set('cache_version',version,5)
-   ngx_log(ngx_ERR,'时间版本是:',version)
    return version
 end
 
@@ -22,7 +21,6 @@ function _M.get_nowtime_version()
    local time_ver 
    time_ver =  lua_cache_data:get('cache_version')
    if time_ver then
-      ngx_log(ngx_ERR,'缓存时间版本是:',time_ver)
       return time_ver
    else
       return op_time_ver() 

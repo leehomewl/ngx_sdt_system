@@ -20,10 +20,11 @@ if 0 == ngx.worker.id() then
             ngx.log(ngx.ERR, "failed to create timer: ", err)
             return
         end
-        local ok, err = ngx.timer.every(init_config.ab_testing_init_time,ab_testing.push_data)
-        if not ok then
-            ngx.log(ngx.ERR, "failed to create timer: ", err)
-            return
+--灰度测试，咱还未开放
+--        local ok, err = ngx.timer.every(init_config.ab_testing_init_time,ab_testing.push_data)
+--        if not ok then
+--            ngx.log(ngx.ERR, "failed to create timer: ", err)
+--            return
         end
 
         local ok, err = ngx.timer.at(0,init_redis_data.lpush_redis)

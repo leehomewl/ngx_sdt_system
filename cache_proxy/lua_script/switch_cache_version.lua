@@ -13,7 +13,7 @@ local nowtime_ver =  lua_cache_data:get('cache_version')
 
 if not nowtime_ver then
    nowtime_ver = op_time_version.get_nowtime_version()
-   ngx_log(ngx_ERR,'缓存时间版本是:',nowtime_ver)
+--   ngx_log(ngx_ERR,'缓存时间版本是:',nowtime_ver)
 end
 
 local url = (ngx_var.host or '') .. (ngx_var.request_uri or '')
@@ -57,7 +57,6 @@ else
    local n_v = -1
    if type(r) == 'table' then
        if client_time_ver >= cache_exist_ver_maximum then
-           ngx_log(ngx_ERR,client_time_ver,'-----',cache_exist_ver_maximum)
            local min_v = client_time_ver - cache_exist_ver_maximum
            for _, k in ipairs(r) do
                k = tonumber(k)
@@ -66,7 +65,6 @@ else
                end
            end
        else
-           ngx_log(ngx_ERR,client_time_ver,'xxx-----',cache_exist_ver_maximum)
           local max_v = day_all_ver_count + (client_time_ver - cache_exist_ver_maximum)
           local j = -1
           for _, k in ipairs(r) do
